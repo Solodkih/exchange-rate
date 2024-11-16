@@ -1,16 +1,20 @@
 <template>
-  <div class="container">
-    <div class="left-side-bar">
-      <LeftSide :currencies="currencies" />
+  <main style="height: 100%; overflow: hidden;">
+    <Title />
+    <div class="container">
+      <div class="left-side-bar">
+        <LeftSide :currencies="currencies" />
+      </div>
+      <div class="mainView">
+        <RouterView />
+      </div>
     </div>
-    <div class="mainView">
-      <RouterView />
-    </div>
-  </div>
+  </main>
 </template>
 
 <script setup>
 import LeftSide from "./component/LeftSide.vue";
+import Title from "./component/Title.vue";
 import { ref } from "vue";
 import data from "./data";
 
