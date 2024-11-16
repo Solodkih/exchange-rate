@@ -1,5 +1,6 @@
 <template>
   <div>
+    currency
     {{ currency.id }}
     {{ currency.numCode }}
     {{ currency.charCode }}
@@ -11,7 +12,7 @@
 </template>
 
 <script setup>
-defineProps(["currency"]);
+const props = defineProps(["currency"]);
 </script>
 
 <style></style>
