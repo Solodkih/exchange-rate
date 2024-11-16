@@ -3,11 +3,15 @@
     <div class="left-side-bar">
       <NavBar :currencies="currencies" />
     </div>
+    <div>
+      <Currency :currency="currencies[0]" />
+    </div>
   </div>
 </template>
 
 <script setup>
 import NavBar from "./component/NavBar.vue";
+import Currency from "./component/Currency.vue";
 import { ref } from "vue";
 import data from "./data";
 

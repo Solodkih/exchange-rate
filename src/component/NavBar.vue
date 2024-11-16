@@ -1,8 +1,8 @@
 <template>
   <nav>
     <ul>
-      <li v-for="currencicy in currencies">
-        {{ currencicy.name }}
+      <li v-for="currency in currencies">
+        {{ currency.name }}
       </li>
     </ul>
   </nav>
