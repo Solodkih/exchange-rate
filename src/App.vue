@@ -1,14 +1,16 @@
 <template>
   <div class="container">
     <div class="left-side-bar">
-      <NavBar :currencies="currencies" />
+      <LeftSide :currencies="currencies" />
     </div>
-    <RouterView />
+    <div class="mainView">
+      <RouterView />
+    </div>
   </div>
 </template>
 
 <script setup>
-import NavBar from "./component/NavBar.vue";
+import LeftSide from "./component/LeftSide.vue";
 import { ref } from "vue";
 import data from "./data";
 
@@ -16,11 +18,49 @@ const currencies = ref(data);
 </script>
 
 <style>
+html,
+body,
+#app {
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
 .container {
   display: flex;
   flex-wrap: nowrap;
+  height: 100%;
+  width: 100%;
 }
 .left-side-bar {
-  width: 40%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.mainView {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 </style>
