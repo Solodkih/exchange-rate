@@ -32,7 +32,6 @@ onMounted(async () => {
         if (startSubStr !== -1 && endSubStr !== -1) {
           return subString.slice(startSubStr + startString.length, endSubStr);
         }
-        console.log(startString, stopString);
         return null;
       }
 
