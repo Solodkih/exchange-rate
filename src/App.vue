@@ -22,6 +22,7 @@ const currencies = ref([]);
 onMounted(async () => {
   try {
     const respons = await fetch(`${window.location.origin}/exchange-rate/data.xml`);
+    console.log(window.location.origin);
     if (respons.ok) {
       const xmlString = await respons.text();
 
