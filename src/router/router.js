@@ -12,14 +12,7 @@ const routes = [
   {
     path: "/currency/:id",
     component: Currency,
-    props: (route) => {
-      return {
-        default: true,
-        currency: data.find(function (item) {
-          return item.id === route.params.id;
-        }),
-      };
-    },
+    props: true,
   },
 ];
 

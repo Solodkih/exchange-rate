@@ -1,24 +1,58 @@
 <template>
-  <main style="height: 100%; overflow: hidden;">
+  <main style="height: 100%; overflow: hidden">
     <Title />
     <div class="container">
       <div class="left-side-bar">
         <LeftSide :currencies="currencies" />
       </div>
-      <div class="mainView">
-        <RouterView />
-      </div>
+      <div class="mainView"><RouterView :currencies="currencies" /></div>
     </div>
   </main>
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import LeftSide from "./component/LeftSide.vue";
 import Title from "./component/Title.vue";
 import { ref } from "vue";
-import data from "./data";
+const currencies = ref([]);
 
-const currencies = ref(data);
+onMounted(async () => {
+  const respons = await fetch("./data.xml");
+  const xmlString = await respons.text();
+  function getStringFromXML(str, start, stop, startString, stopString) {
+    const subString = str.slice(start, stop);
+    const startSubStr = subString.indexOf(startString, 0);
+    const endSubStr = subString.indexOf(stopString, 0);
+    if (startSubStr !== -1 && endSubStr !== -1) {
+      return subString.slice(startSubStr + startString.length, endSubStr);
+    }
+    return null;
+  }
+
+  let index;
+  const newCurrencies = [];
+  for (index = 0; index < xmlString.length; index++) {
+    const start = xmlString.indexOf("<Valute ID", index);
+    const end = xmlString.indexOf("</Valute>", index);
+    if (end > 0) {
+      index = end;
+      const currency = {
+        id: getStringFromXML(xmlString, start, end, 'ID="', '">'),
+        name: getStringFromXML(xmlString, start, end, "<Name>", "</Name>"),
+        numCode: getStringFromXML(xmlString, start, end, "<NumCode>", "</NumCode>"),
+        charCode: getStringFromXML(xmlString, start, end, "<CharCode>", "</CharCode>"),
+        nominal: getStringFromXML(xmlString, start, end, "<Nominal>", "</Nominal>"),
+        value: getStringFromXML(xmlString, start, end, "<Value>", "</Value>"),
+        vunitRate: getStringFromXML(xmlString, start, end, "<VunitRate>", "</VunitRate>"),
+      };
+      if (!Object.values(currency).find((value) => value === null || value === undefined)) {
+        newCurrencies.push(currency);
+      }
+    }
+  }
+  currencies.value = newCurrencies;
+});
 </script>
 
 <style>

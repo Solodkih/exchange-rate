@@ -9,17 +9,36 @@
         <div class="currency__elem">Курс:</div>
       </div>
       <div class="currency__columnRight">
-        <div class="currency__elem">{{ currency.name }}</div>
-        <div class="currency__elem">{{ currency.charCode }}</div>
-        <div class="currency__elem">{{ currency.nominal }}</div>
-        <div class="currency__elem">{{ currency.value }} руб.</div>
+        <div class="currency__elem">{{ currency?.name }}</div>
+        <div class="currency__elem">{{ currency?.charCode }}</div>
+        <div class="currency__elem">{{ currency?.nominal }}</div>
+        <div class="currency__elem">{{ currency?.value }} руб.</div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps(["currency"]);
+import { onBeforeMount, onUpdated, ref } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const { currencies } = defineProps(["currencies"]);
+const currency = ref({});
+
+function getCurrentCurrency() {
+  return currencies.find(function (item) {
+    return item.id === route.params.id;
+  });
+}
+
+onBeforeMount(() => {
+  currency.value = getCurrentCurrency();
+});
+
+onUpdated(() => {
+  currency.value = getCurrentCurrency();
+});
 </script>
 
 <style>
@@ -51,4 +70,8 @@ const props = defineProps(["currency"]);
   font-size: 20px;
 }
 </style>
-
+/*
+<div class="currency__elem">{{ currency.name }}</div>
+<div class="currency__elem">{{ currency.charCode }}</div>
+<div class="currency__elem">{{ currency.nominal }}</div>
+<div class="currency__elem">{{ currency.value }} руб.</div>
