@@ -33,9 +33,11 @@ const handleClickCurrency = (event) => {
 <style>
 .leftSide {
   padding: 20px;
-  background-color: #ABF000;
+  background-color: #abf000;
   height: 100%;
   color: #a0000f;
+  overflow: scroll;
+  margin-bottom: 20px;
 }
 .leftSide__title {
   font-size: 30px;

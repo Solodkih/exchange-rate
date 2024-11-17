@@ -9,22 +9,5 @@
   
   <script setup></script>
   
-  <style>
-  .startView {
-    padding: 20px;
-    color: #A0000F;
-    background: #8db42d;
-    height: 100%;
-  }
-  .startView__title {
-    padding-left: 100px;
-    text-align: left;
-    font-size: 30px;
-  }
-  .startView__text {
-    font-size: 20px;
-    text-indent: 10px;
-    padding: 10px;
-  }
-  </style>
+  <style> </style>
   

@@ -12,7 +12,7 @@
 <style>
 .startView {
   padding: 20px;
-  color: #A0000F;
+  color: #a0000f;
   background: #8db42d;
   height: 100%;
 }
