@@ -18,7 +18,7 @@ import { ref } from "vue";
 const currencies = ref([]);
 
 onMounted(async () => {
-  const respons = await fetch("./data.xml");
+  const respons = await fetch(`${window.location.origin}/data.xml`);
   const xmlString = await respons.text();
   function getStringFromXML(str, start, stop, startString, stopString) {
     const subString = str.slice(start, stop);

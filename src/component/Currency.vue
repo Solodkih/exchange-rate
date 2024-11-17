@@ -20,8 +20,9 @@
 
 <script setup>
 import { onBeforeMount, onUpdated, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
+const router = useRouter();
 const route = useRoute();
 const { currencies } = defineProps(["currencies"]);
 const currency = ref({});
@@ -33,11 +34,21 @@ function getCurrentCurrency() {
 }
 
 onBeforeMount(() => {
-  currency.value = getCurrentCurrency();
+  const newCurrency = getCurrentCurrency();
+  if (newCurrency) {
+    currency.value = getCurrentCurrency();
+  } else {
+    router.push('/error');
+  }
 });
 
 onUpdated(() => {
-  currency.value = getCurrentCurrency();
+  const newCurrency = getCurrentCurrency();
+  if (newCurrency) {
+    currency.value = getCurrentCurrency();
+  } else {
+    router.push('/error');
+  }
 });
 </script>
 

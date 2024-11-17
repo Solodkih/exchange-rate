@@ -1,6 +1,6 @@
 import StartView from "../component/StartView.vue";
 import Currency from "../component/Currency.vue";
-import data from "../data";
+import PageNotFound from "@/component/PageNotFound.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -14,6 +14,7 @@ const routes = [
     component: Currency,
     props: true,
   },
+  { path: "/:pathMatch(.*)*", component: PageNotFound },
 ];
 
 const router = createRouter({
