@@ -21,7 +21,7 @@ const currencies = ref([]);
 
 onMounted(async () => {
   try {
-    const respons = await fetch(`${window.location.origin}/data.xml`);
+    const respons = await fetch(`${window.location.origin}/exchange-rate/data.xml`);
     if (respons.ok) {
       const xmlString = await respons.text();
 
@@ -32,7 +32,6 @@ onMounted(async () => {
         if (startSubStr !== -1 && endSubStr !== -1) {
           return subString.slice(startSubStr + startString.length, endSubStr);
         }
-        console.log(startString, stopString);
         return null;
       }
 
